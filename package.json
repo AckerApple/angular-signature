@@ -1,0 +1,50 @@
+{
+  "name": "angular-signature",
+  "version": "1.0.0",
+  "description": "AngularJS directive for the signature pad JavaScript library by szimek",
+  "main": "src/angular-signature",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:index": "pug src/index.pug --out www",
+    "build:js": "jspm build src/angular-signature.js www/angular-signature.js",
+    "build:angular": "jspm build src/angular.js www/angular.js",
+    "build": "npm run build:angular && npm run build:js && npm run build:index",
+    "watch:js": "jspm build src/angular-signature.js www/angular-signature.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AckerApple/angular-signature.git"
+  },
+  "author": "many people",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AckerApple/angular-signature/issues"
+  },
+  "homepage": "https://github.com/AckerApple/angular-signature#readme",
+  "devDependencies": {
+    "jspm": "^0.17.0-beta.29",
+    "pug": "^2.0.0-beta6"
+  },
+  "jspm": {
+    "name": "angular-signature",
+    "main": "src/angular-signature.js",
+    "dependencies": {
+      "signature_pad": "npm:signature_pad@^1.5.3"
+    },
+    "devDependencies": {
+      "angular": "github:angular/bower-angular@^1.5.8",
+      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.16"
+    },
+    "overrides": {
+      "github:angular/bower-angular@1.5.8": {
+        "main": "angular",
+        "meta": {
+          "angular.js": {
+            "exports": "angular",
+            "format": "global"
+          }
+        }
+      }
+    }
+  }
+}
