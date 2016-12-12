@@ -4,12 +4,13 @@
   "description": "AngularJS directive for the signature pad JavaScript library by szimek",
   "main": "src/angular-signature",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd www && reload --browser",
+    "build:signature_pad": "node scripts/signature_pad.js",
     "build:index": "pug src/index.pug --out www",
-    "build:js": "jspm build src/angular-signature.js www/angular-signature.js",
-    "build:angular": "jspm build src/angular.js www/angular.js",
+    "build:js": "webpack src/angular-signature.js www/angular-signature.js --minify --skip-source-maps",
+    "build:angular": "webpack src/angular.js www/angular.js",
     "build": "npm run build:angular && npm run build:js && npm run build:index",
-    "watch:js": "jspm build src/angular-signature.js www/angular-signature.js --watch"
+    "watch:js": "webpack src/angular-signature.js www/angular-signature.js --watch"
   },
   "repository": {
     "type": "git",
@@ -22,8 +23,14 @@
   },
   "homepage": "https://github.com/AckerApple/angular-signature#readme",
   "devDependencies": {
+    "angular": "^1.6.0",
+    "babel-core": "^6.20.0",
+    "babel-loader": "^6.2.9",
+    "babel-preset-es2015": "^6.18.0",
     "jspm": "^0.17.0-beta.29",
-    "pug": "^2.0.0-beta6"
+    "pug": "^2.0.0-beta6",
+    "reload": "^1.1.0",
+    "webpack": "^1.14.0"
   },
   "jspm": {
     "name": "angular-signature",

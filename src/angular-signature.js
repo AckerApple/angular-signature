@@ -1,4 +1,6 @@
-import SignaturePad from "signature_pad"
+//import SignaturePad from "signature_pad/signature_pad.min.js"
+//import SignaturePad from "signature_pad"
+import SignaturePad from "./signature_pad"
 
 const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
 
