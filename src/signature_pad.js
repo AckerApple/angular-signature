@@ -1,6 +1,5 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    console.log(0)
     // AMD. Register as an anonymous module unless amdModuleId is set
     define([], function () {
       return (root['SignaturePad'] = factory());
