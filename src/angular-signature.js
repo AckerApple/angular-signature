@@ -6,13 +6,6 @@ const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
 
 class SignaturePadCom{
   constructor($window, $timeout, $element, $scope){
-    //create ng-if escapable memory & create class reference
-    if(this.as){
-      Object.assign(this, this.as)
-    }else{
-      this.as = this
-    }
-
     this.$window = $window
     this.$timeout = $timeout
     this.$element = $element
@@ -26,6 +19,8 @@ class SignaturePadCom{
   }
 
   $onInit(){
+    this.as = Object.assign(this.as||this,this)&&this
+
     this.signaturePad = new SignaturePad(this.canvas);
 
     if(this.dataurl) {
@@ -42,6 +37,7 @@ class SignaturePadCom{
     this.touchender=()=>this.onTouchend()
     this.$element.bind('touchstart', this.touchstarter);
     this.$element.bind('touchend', this.touchender);
+    this.loaded = true
   }
 
   $onChanges(changes){
@@ -57,16 +53,21 @@ class SignaturePadCom{
   }
 
   onTouchstart() {
+    this.updateModel()
+    /*
     this.$scope.$digest(()=>{
       this.updateModel();
     })
+    */
   }
 
   onTouchend() {
+    this.updateModel()
+    /*
     this.$scope.$digest(()=>{
       this.updateModel();
-      this.updateModel();
     });
+    */
   }
 
   onMouseup(){
@@ -133,6 +134,6 @@ export default angular.module('angular-signature', [])
     onModel: '&',
   },
   controller:SignaturePadCom,
-  template: '<canvas ng-mouseup="$ctrl.onMouseup()" ng-mousedown="$ctrl.updateModel()"></canvas>'
+  template: '<canvas ng-show="$ctrl.loaded" ng-mouseup="$ctrl.onMouseup()" ng-mousedown="$ctrl.updateModel()"></canvas>'
 })
 .name
